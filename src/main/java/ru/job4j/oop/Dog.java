@@ -1,4 +1,4 @@
-package ru.job4j.tracker.oop;
+package ru.job4j.oop;
 
 public class Dog {
     public static void main(String[] args) {
