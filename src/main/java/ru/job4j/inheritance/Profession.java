@@ -1,9 +1,9 @@
 package ru.job4j.inheritance;
 
 public class Profession {
-    private boolean degree;
+    private boolean grade;
 
-    public Profession(boolean degree) {
-        this.degree = degree;
+    public Profession(boolean grade) {
+        this.grade = grade;
     }
 }
