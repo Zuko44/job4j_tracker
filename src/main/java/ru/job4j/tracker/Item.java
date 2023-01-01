@@ -22,7 +22,7 @@ public class Item {
     }
 
     public LocalDateTime getCreated() {
-        return created;
+        return this.created;
     }
 
     public int getId() {
