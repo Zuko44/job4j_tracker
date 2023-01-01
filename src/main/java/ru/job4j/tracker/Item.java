@@ -21,8 +21,8 @@ public class Item {
         this.name = name;
     }
 
-    public LocalDateTime getTime() {
-        return this.created;
+    public LocalDateTime getCreated() {
+        return created;
     }
 
     public int getId() {
