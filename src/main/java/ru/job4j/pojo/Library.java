@@ -15,10 +15,18 @@ public class Library {
             Book pr = books[index];
             System.out.println(pr.getName() + " - " + pr.getPages());
         }
+        Book between = books[0];
+        books[0] = books[3];
+        books[3] = between;
+        System.out.println();
         for (int index = 0; index < books.length; index++) {
             Book pr = books[index];
-            System.out.println();
-            if (pr.getName() == "Clean code") {
+            System.out.println(pr.getName() + " - " + pr.getPages());
+        }
+        System.out.println();
+        for (int index = 0; index < books.length; index++) {
+            Book pr = books[index];
+            if ("Clean code".equals(pr.getName())) {
                 System.out.println(pr.getName() + " - " + pr.getPages());
             }
         }
