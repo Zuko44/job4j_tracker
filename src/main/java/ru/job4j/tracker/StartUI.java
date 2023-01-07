@@ -9,6 +9,7 @@ public class StartUI {
         new StartUI().init(scanner, tracker);
     }
 
+    @SuppressWarnings("checkstyle:MethodLength")
     public void init(Scanner scanner, Tracker tracker) {
         boolean run = true;
         while (run) {
@@ -44,6 +45,15 @@ public class StartUI {
                 } else {
                     System.out.println("Ошибка замены заявки.");
                 }
+            } else if (select == 3) {
+                System.out.println("=== Delete item ===");
+                System.out.print("Enter id: ");
+                int id = Integer.parseInt(scanner.nextLine());
+                if (tracker.delete(id)) {
+                    System.out.println("Заявка удалена успешно.");
+                } else {
+                    System.out.println("Ошибка удаления заявки.");
+                }
             } else if (select == 6) {
                 run = false;
             }
@@ -51,11 +61,7 @@ public class StartUI {
     }
 
     private void showMenu() {
-        String[] menu = {
-                "Add new Item", "Show all items", "Edit item",
-                "Delete item", "Find item by id", "Find items by name",
-                "Exit Program"
-        };
+        String[] menu = {"Add new Item", "Show all items", "Edit item", "Delete item", "Find item by id", "Find items by name", "Exit Program"};
         System.out.println("Menu:");
         for (int i = 0; i < menu.length; i++) {
             System.out.println(i + ". " + menu[i]);
