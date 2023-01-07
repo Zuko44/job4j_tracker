@@ -11,6 +11,6 @@ public class StartUI {
 
         Item january = new Item(1, "new Item");
         System.out.println();
-        System.out.println(january.toString());
+        System.out.println(january);
     }
 }
