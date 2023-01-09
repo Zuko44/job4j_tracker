@@ -1,4 +1,4 @@
-package ru.job4j.tracker.oop;
+package ru.job4j.oop;
 
 public class PolyUsage {
     public static void main(String[] args) {
