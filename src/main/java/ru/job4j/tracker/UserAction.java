@@ -1,4 +1,4 @@
-package ru.job4j.poly;
+package ru.job4j.tracker;
 
 import ru.job4j.tracker.Input;
 import ru.job4j.tracker.Tracker;

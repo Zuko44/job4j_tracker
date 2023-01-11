@@ -1,8 +1,4 @@
-package ru.job4j.poly;
-
-import ru.job4j.tracker.ConsoleInput;
-import ru.job4j.tracker.Input;
-import ru.job4j.tracker.Tracker;
+package ru.job4j.tracker;
 
 public class StartUI {
     public static void main(String[] args) {

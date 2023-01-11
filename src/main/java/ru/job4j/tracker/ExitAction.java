@@ -1,7 +1,4 @@
-package ru.job4j.poly;
-
-import ru.job4j.tracker.Input;
-import ru.job4j.tracker.Tracker;
+package ru.job4j.tracker;
 
 public class ExitAction implements UserAction {
     public String name() {
