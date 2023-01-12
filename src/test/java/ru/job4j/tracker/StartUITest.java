@@ -52,4 +52,85 @@ public class StartUITest {
         new StartUI(output).init(in, tracker, actions);
         assertThat(tracker.findById(item.getId())).isNull();
     }
+
+    @Test
+    public void whenFindById() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("Test"));
+        Input input = new StubInput(
+                new String[]{"0", String.valueOf(item.getId()), "1"}
+        );
+        UserAction[] actions = {
+                new FindByIdAction(out),
+                new ExitAction(out)
+        };
+        new StartUI(out).init(input, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString()).isEqualTo(
+                "Menu." + ln
+                        + "0. Find by id item" + ln
+                        + "1. Exit from Menu" + ln
+                        + "=== Find item by id ===" + ln
+                        + item + ln
+                        + "Menu." + ln
+                        + "0. Find by id item" + ln
+                        + "1. Exit from Menu" + ln
+                        + "Exit" + ln
+        );
+    }
+
+    @Test
+    public void whenFindByName() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("Test"));
+        Input input = new StubInput(
+                new String[]{"0", item.getName(), "1"}
+        );
+        UserAction[] actions = {
+                new FindByNameAction(out),
+                new ExitAction(out)
+        };
+        new StartUI(out).init(input, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString()).isEqualTo(
+                "Menu." + ln
+                        + "0. Find by name item" + ln
+                        + "1. Exit from Menu" + ln
+                        + "=== Find items by name ===" + ln
+                        + item + ln
+                        + "Menu." + ln
+                        + "0. Find by name item" + ln
+                        + "1. Exit from Menu" + ln
+                        + "Exit" + ln
+        );
+    }
+
+    @Test
+    public void whenFindAll() {
+        Output out = new StubOutput();
+        Tracker tracker = new Tracker();
+        Item item = tracker.add(new Item("Test"));
+        Input input = new StubInput(
+                new String[]{"0", "1"}
+        );
+        UserAction[] actions = {
+                new ShowAction(out),
+                new ExitAction(out)
+        };
+        new StartUI(out).init(input, tracker, actions);
+        String ln = System.lineSeparator();
+        assertThat(out.toString()).isEqualTo(
+                "Menu." + ln
+                        + "0. Show all Items" + ln
+                        + "1. Exit from Menu" + ln
+                        + "=== Show all items ===" + ln
+                        + item + ln
+                        + "Menu." + ln
+                        + "0. Show all Items" + ln
+                        + "1. Exit from Menu" + ln
+                        + "Exit" + ln
+        );
+    }
 }
