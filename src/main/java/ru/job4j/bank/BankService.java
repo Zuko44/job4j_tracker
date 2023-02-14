@@ -9,27 +9,20 @@ public class BankService {
     private final Map<User, List<Account>> users = new HashMap<>();
 
     public void addUser(User user) {
-        if (!users.containsKey(user.getPassport())) {
-            users.put(user, new ArrayList<Account>());
-        }
+        users.putIfAbsent(user, new ArrayList<Account>());
     }
 
     public boolean deleteUser(String passport) {
-        boolean deleted = false;
-        for (User user : users.keySet()) {
-            if (user.getPassport().equals(passport)) {
-                users.remove(user);
-                deleted = true;
-            }
-        }
-        return deleted;
+        return users.remove(new User(passport, "")) != null;
     }
 
     public void addAccount(String passport, Account account) {
         User user = findByPassport(passport);
-        List<Account> accounts = users.get(user);
-        if (!accounts.contains(account)) {
-            accounts.add(account);
+        if (user != null) {
+            List<Account> accounts = users.get(user);
+            if (!accounts.contains(account)) {
+                accounts.add(account);
+            }
         }
     }
 
@@ -52,6 +45,7 @@ public class BankService {
             for (Account need : accounts) {
                 if (need.getRequisite().equals(requisite)) {
                     found = need;
+                    break;
                 }
             }
         }
@@ -63,14 +57,9 @@ public class BankService {
         boolean rsl = false;
         Account firstAccount = findByRequisite(srcPassport, srcRequisite);
         Account secondAccount = findByRequisite(destPassport, destRequisite);
-        if (firstAccount != null && firstAccount.getBalance() >= amount) {
-            if (findByRequisite(destPassport, destRequisite) != null) {
-                double secondBalance = secondAccount.getBalance();
-                secondAccount.setBalance(secondBalance + amount);
-            } else {
-                User dest = findByPassport(destPassport);
-                users.get(dest).add(new Account(destRequisite, amount));
-            }
+        if (firstAccount != null && secondAccount != null && firstAccount.getBalance() >= amount) {
+            firstAccount.setBalance(firstAccount.getBalance() - amount);
+            secondAccount.setBalance(secondAccount.getBalance() + amount);
             rsl = true;
         }
         return rsl;
