@@ -35,11 +35,7 @@ public class AnalyzeByMap {
         LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
         for (Pupil pupil : pupils) {
             for (Subject subject : pupil.subjects()) {
-                if (map.get(subject.name()) != null) {
-                    map.put(subject.name(), map.get(subject.name()) + subject.score());
-                } else {
-                    map.put(subject.name(), subject.score());
-                }
+                map.put(subject.name(), map.getOrDefault(subject.name(), 0) + subject.score());
             }
         }
         for (String key : map.keySet()) {
@@ -53,11 +49,7 @@ public class AnalyzeByMap {
         LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
         for (Pupil pupil : pupils) {
             for (Subject subject : pupil.subjects()) {
-                if (map.get(pupil.name()) != null) {
-                    map.put(pupil.name(), map.get(pupil.name()) + subject.score());
-                } else {
-                    map.put(pupil.name(), subject.score());
-                }
+                map.put(pupil.name(), map.getOrDefault(pupil.name(), 0) + subject.score());
             }
         }
         for (String key : map.keySet()) {
@@ -72,11 +64,7 @@ public class AnalyzeByMap {
         LinkedHashMap<String, Integer> map = new LinkedHashMap<>();
         for (Pupil pupil : pupils) {
             for (Subject subject : pupil.subjects()) {
-                if (map.get(subject.name()) != null) {
-                    map.put(subject.name(), map.get(subject.name()) + subject.score());
-                } else {
-                    map.put(subject.name(), subject.score());
-                }
+                map.put(subject.name(), map.getOrDefault(subject.name(), 0) + subject.score());
             }
         }
         for (String key : map.keySet()) {
