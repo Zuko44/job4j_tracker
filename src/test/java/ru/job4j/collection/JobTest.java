@@ -59,8 +59,8 @@ public class JobTest {
 
     @Test
     public void whenComapatorAscByPriorityAndAscByName() {
-        Comparator<Job> ascByPriorityAndName = new JobAscByPriority().thenComparing(new JobAscByName());
-        int rsl = ascByPriorityAndName.compare(
+        Comparator<Job> ascByNameAndPriority = new JobAscByName().thenComparing(new JobAscByPriority());
+        int rsl = ascByNameAndPriority.compare(
                 new Job("Fix bug", 1),
                 new Job("Fix bug", 4)
         );
