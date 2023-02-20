@@ -25,5 +25,7 @@ public class AttachmentSort {
                 return first.getName().compareTo(second.getName());
             }
         };
+        Comparator<Attachment> comparatorDoubleTwo = (left, right) -> left.getName().compareTo(right.getName());
+        Comparator<Attachment> comparatorDesk = (left, right) -> Integer.compare(right.getSize(), left.getSize());
     }
 }
