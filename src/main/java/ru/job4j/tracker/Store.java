@@ -2,7 +2,7 @@ package ru.job4j.tracker;
 
 import java.util.List;
 
-public interface Store extends AutoCloseable{
+public interface Store extends AutoCloseable {
     Item add(Item item);
 
     boolean replace(int id, Item item);
