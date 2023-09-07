@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>ru.job4j</groupId>
-    <artifactId>tracker</artifactId>
+    <artifactId>memTracker</artifactId>
     <url>http://job4j.ru/</url>
     <version>2.0</version>
     <packaging>jar</packaging>
@@ -46,6 +46,11 @@
             <artifactId>assertj-core</artifactId>
             <version>3.23.1</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>42.5.4</version>
         </dependency>
     </dependencies>
     <build>

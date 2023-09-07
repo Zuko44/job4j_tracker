@@ -11,7 +11,7 @@ public class ExitAction implements UserAction {
         return "Exit from Menu";
     }
 
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Store memTracker) {
         out.println("Exit");
         return false;
     }

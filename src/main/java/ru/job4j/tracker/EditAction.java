@@ -11,12 +11,12 @@ public class EditAction implements UserAction {
         return "Edit item";
     }
 
-    public boolean execute(Input input, Tracker tracker) {
+    public boolean execute(Input input, Store memTracker) {
         out.println("=== Edit item ===");
         int id = input.askInt("Enter id: ");
         String name = input.askStr("Enter name: ");
         Item item = new Item(name);
-        if (tracker.replace(id, item)) {
+        if (memTracker.replace(id, item)) {
             out.println("Заявка изменена успешно.");
         } else {
             out.println("Ошибка замены заявки.");
