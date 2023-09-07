@@ -21,6 +21,11 @@ public class Item {
         this.name = name;
     }
 
+    public Item(String name, LocalDateTime created) {
+        this.name = name;
+        this.created = created;
+    }
+
     public Item(int id, String name, LocalDateTime created) {
         this.id = id;
         this.name = name;
