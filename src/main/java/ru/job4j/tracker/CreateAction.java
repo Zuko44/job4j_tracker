@@ -16,7 +16,7 @@ public class CreateAction implements UserAction {
     public boolean execute(Input input, Store memTracker) {
         out.println("=== Create a new Item ====");
         String name = input.askStr("Enter name: ");
-        Item item = new Item(name, LocalDateTime.now());
+        Item item = new Item(name);
         memTracker.add(item);
         out.println("Добавленная заявка: " + item);
         return true;
