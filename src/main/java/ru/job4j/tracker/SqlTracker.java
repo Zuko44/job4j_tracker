@@ -48,6 +48,7 @@ public class SqlTracker implements Store {
                 resultSet.getInt("id"),
                 resultSet.getString("name"),
                 resultSet.getTimestamp("created").toLocalDateTime().withNano(0)
+                /** Изменено время, убраны миллисекунды*/
         );
     }
 
