@@ -61,7 +61,7 @@ public class Item {
         return "Item{" + "id=" + id + ", name='" + name + '\'' + ", created=" + created.format(FORMATTER) + '}';
     }
 
-    @Override
+    /**@Override
     public boolean equals(Object o) {
         if (this == o) {
             return true;
@@ -76,5 +76,22 @@ public class Item {
     @Override
     public int hashCode() {
         return Objects.hash(name);
+    }*/
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        Item item = (Item) o;
+        return id == item.id && created.equals(item.created) && name.equals(item.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, created);
     }
 }
