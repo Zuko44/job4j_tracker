@@ -9,4 +9,6 @@
 		http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
 		http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-latest.xsd">
     <include file="scripts/001_ddl_create_items_table.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/002_ddl_alter_table_items_add_checked_column.sql" relativeToChangelogFile="true"/>
+    <include file="scripts/003_ddl_alter_table_items_drop_checked_column.sql" relativeToChangelogFile="true"/>
 </databaseChangeLog>
