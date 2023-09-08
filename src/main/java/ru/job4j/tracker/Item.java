@@ -87,6 +87,6 @@ public class Item {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, created);
+        return Objects.hash(id, name, created.format(FORMATTER));
     }
 }
