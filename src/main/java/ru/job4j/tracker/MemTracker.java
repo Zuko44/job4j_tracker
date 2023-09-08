@@ -53,13 +53,20 @@ public class MemTracker implements Store {
         return rsl;
     }
 
-    public boolean delete(int id) {
+    /**public boolean delete(int id) {
         Item index = indexOf(id);
         boolean rsl = index != null;
         if (rsl) {
             items.remove(index);
         }
         return rsl;
+    }*/
+    public void delete(int id) {
+        Item index = indexOf(id);
+        boolean rsl = index != null;
+        if (rsl) {
+            items.remove(index);
+        }
     }
 
     @Override

@@ -36,7 +36,10 @@ public final class SingleTracker {
         return memTracker.replace(id, item);
     }
 
-    public boolean delete(int id) {
+    /**public boolean delete(int id) {
         return memTracker.delete(id);
+    }*/
+    public void delete(int id) {
+        memTracker.delete(id);
     }
 }

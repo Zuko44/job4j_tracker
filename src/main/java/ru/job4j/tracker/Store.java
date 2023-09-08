@@ -7,7 +7,7 @@ public interface Store extends AutoCloseable {
 
     boolean replace(int id, Item item);
 
-    boolean delete(int id);
+    void delete(int id);
 
     List<Item> findAll();
 
