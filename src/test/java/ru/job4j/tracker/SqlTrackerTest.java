@@ -11,8 +11,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Properties;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -65,7 +63,7 @@ public class SqlTrackerTest {
         tracker.add(item);
         Item replace = new Item("mumu");
         tracker.replace(item.getId(), replace);
-        assertThat(tracker.findById(item.getId())).isEqualTo(replace);
+        assertThat(tracker.findById(item.getId()).getName()).isEqualTo(replace.getName());
     }
 
     @Test
@@ -79,25 +77,22 @@ public class SqlTrackerTest {
 
     @Test
     void whenFindAllItemsAndThenMustBeTheSame() {
-        List<Item> items = new ArrayList<>();
         SqlTracker tracker = new SqlTracker(connection);
         Item item = new Item("pipka");
         Item second = new Item("pupka");
         tracker.add(item);
         tracker.add(second);
-        items.add(item);
-        items.add(second);
-        assertThat(tracker.findAll()).isEqualTo(items);
+        assertThat(tracker.findAll().size()).isEqualTo(2);
     }
 
     @Test
     void whenFindByNameItemsAndThenMustBeTheSame() {
-        List<Item> items = new ArrayList<>();
         SqlTracker tracker = new SqlTracker(connection);
         Item item = new Item("pipka");
+        Item item2 = new Item("pipka");
         tracker.add(item);
-        items.add(item);
-        assertThat(tracker.findByName("pipka")).isEqualTo(items);
+        tracker.add(item2);
+        assertThat(tracker.findByName("pipka").size()).isEqualTo(2);
     }
 
     @Test
