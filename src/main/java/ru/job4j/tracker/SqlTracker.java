@@ -47,7 +47,7 @@ public class SqlTracker implements Store {
         return new Item(
                 resultSet.getInt("id"),
                 resultSet.getString("name"),
-                resultSet.getTimestamp("created").toLocalDateTime()
+                resultSet.getTimestamp("created").toLocalDateTime().withNano(0)
         );
     }
 

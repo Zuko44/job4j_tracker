@@ -11,7 +11,7 @@ public class Item {
      */
     private int id;
     private String name;
-    private LocalDateTime created = LocalDateTime.now();
+    private LocalDateTime created = LocalDateTime.now().withNano(0);
 
     public Item() {
 
@@ -82,11 +82,11 @@ public class Item {
         }
         Item item = (Item) o;
         return id == item.id && Objects.equals(name, item.name)
-                && Objects.equals(created.format(FORMATTER), item.created.format(FORMATTER));
+                && Objects.equals(created, item.created);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, created.format(FORMATTER));
+        return Objects.hash(id, name, created);
     }
 }
