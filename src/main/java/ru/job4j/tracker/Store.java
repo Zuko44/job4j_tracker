@@ -15,3 +15,4 @@ public interface Store extends AutoCloseable {
 
     Item findById(int id);
 }
+

@@ -61,6 +61,7 @@ public class MemTracker implements Store {
         }
         return rsl;
     }*/
+
     public void delete(int id) {
         Item index = indexOf(id);
         boolean rsl = index != null;

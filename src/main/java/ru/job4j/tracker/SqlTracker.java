@@ -87,6 +87,7 @@ public class SqlTracker implements Store {
         }
         return result;
     }*/
+
     public void delete(int id) {
         try (PreparedStatement statement =
                      cn.prepareStatement("DELETE FROM items WHERE id = ?")) {

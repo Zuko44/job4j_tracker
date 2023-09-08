@@ -23,14 +23,14 @@ public class DeleteAction implements UserAction {
         }
         return true;
     }*/
+
     public boolean execute(Input input, Store memTracker) {
         out.println("=== Delete item ===");
         int id = input.askInt("Enter id: ");
         memTracker.delete(id);
-        if (memTracker.findById(id).getId() == 0) {
+        if (memTracker.findById(id) == null) {
             out.println("Заявка удалена успешно.");
         } else {
-            System.out.println(memTracker.findById(id));
             out.println("Ошибка удаления заявки.");
         }
         return true;
