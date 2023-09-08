@@ -43,6 +43,14 @@ public class SqlTracker implements Store {
         }
     }
 
+    private Item generateItem(ResultSet resultSet) throws SQLException {
+        return new Item(
+                resultSet.getInt("id"),
+                resultSet.getString("name"),
+                resultSet.getTimestamp("created").toLocalDateTime()
+        );
+    }
+
     @Override
     public Item add(Item item) {
         try (PreparedStatement statement =
@@ -106,11 +114,7 @@ public class SqlTracker implements Store {
         try (PreparedStatement statement = cn.prepareStatement("SELECT * FROM items")) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    items.add(new Item(
-                            resultSet.getInt("id"),
-                            resultSet.getString("name"),
-                            resultSet.getTimestamp("created").toLocalDateTime()
-                    ));
+                    items.add(generateItem(resultSet));
                 }
             }
         } catch (Exception e) {
@@ -126,11 +130,7 @@ public class SqlTracker implements Store {
             statement.setString(1, key);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    items.add(new Item(
-                            resultSet.getInt("id"),
-                            resultSet.getString("name"),
-                            resultSet.getTimestamp("created").toLocalDateTime()
-                    ));
+                    items.add(generateItem(resultSet));
                 }
             }
         } catch (Exception e) {
@@ -141,14 +141,12 @@ public class SqlTracker implements Store {
 
     @Override
     public Item findById(int id) {
-        Item item = new Item();
+        Item item = null;
         try (PreparedStatement statement = cn.prepareStatement("SELECT * FROM items where id = ?")) {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    item.setId(resultSet.getInt("id"));
-                    item.setName(resultSet.getString("name"));
-                    item.setCreated(resultSet.getTimestamp("created").toLocalDateTime());
+                    item = generateItem(resultSet);
                 }
             }
         } catch (Exception e) {
