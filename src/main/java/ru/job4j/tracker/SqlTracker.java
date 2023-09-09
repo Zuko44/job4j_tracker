@@ -21,7 +21,7 @@ public class SqlTracker implements Store {
 
     private void init() {
         /**try (InputStream in = SqlTracker.class.getClassLoader()
-                .getResourceAsStream("app.properties")) {*/
+         .getResourceAsStream("app.properties")) {*/
         try (InputStream in = new FileInputStream("db/liquibase.properties")) {
             Properties config = new Properties();
             config.load(in);
@@ -48,8 +48,8 @@ public class SqlTracker implements Store {
                 resultSet.getInt("id"),
                 resultSet.getString("name"),
                 resultSet.getTimestamp("created").toLocalDateTime().withNano(0)
-
-        );/** Изменено время, убраны миллисекунды */
+        );
+        /** Изменено время, убраны миллисекунды */
     }
 
     @Override
@@ -88,16 +88,16 @@ public class SqlTracker implements Store {
 
     @Override
     /**public boolean delete(int id) {
-        boolean result = false;
-        try (PreparedStatement statement =
-                     cn.prepareStatement("DELETE FROM items WHERE id = ?")) {
-            statement.setInt(1, id);
-            result = statement.executeUpdate() > 0;
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return result;
-    }*/
+     boolean result = false;
+     try (PreparedStatement statement =
+     cn.prepareStatement("DELETE FROM items WHERE id = ?")) {
+     statement.setInt(1, id);
+     result = statement.executeUpdate() > 0;
+     } catch (Exception e) {
+     e.printStackTrace();
+     }
+     return result;
+     }*/
 
     public void delete(int id) {
         try (PreparedStatement statement =
