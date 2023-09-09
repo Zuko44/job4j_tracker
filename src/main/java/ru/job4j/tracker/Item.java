@@ -12,7 +12,7 @@ public class Item {
     private int id;
     private String name;
     private LocalDateTime created = LocalDateTime.now().withNano(0);
-    /** Изменено время, убраны миллисекунды */
+    /** Изменено время, убраны миллисекунды  */
 
     public Item() {
 
