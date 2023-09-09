@@ -16,7 +16,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
-    <profiles>
+    <profiles><!-- добавлены профайлы -->
         <profile>
             <id>test</id>
             <properties>
@@ -74,7 +74,7 @@
             <artifactId>h2</artifactId>
             <version>2.1.214</version>
             <scope>test</scope>
-        </dependency>
+        </dependency><!-- добавлена h2 -->
     </dependencies>
 
     <build>
@@ -145,7 +145,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <plugin>
+            <plugin><!-- добавлен плагин -->
                 <groupId>org.liquibase</groupId>
                 <artifactId>liquibase-maven-plugin</artifactId>
                 <version>4.15.0</version>
