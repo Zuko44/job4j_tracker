@@ -4,8 +4,6 @@ import org.junit.Test;
 
 import java.util.List;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.is;
 import static org.assertj.core.api.Assertions.assertThat;
 
 public class MemTrackerTest {
@@ -16,7 +14,7 @@ public class MemTrackerTest {
         item.setName("test1");
         memTracker.add(item);
         Item result = memTracker.findById(item.getId());
-        assertThat(result.getName(), is(item.getName()));
+        assertThat(result.getName()).isEqualTo(item.getName());
     }
 
     @Test
@@ -99,13 +97,12 @@ public class MemTrackerTest {
         assertThat(memTracker.findById(id)).isNull();
     }
 
-    /**@Test
-    public void whenDeleteItemIsNotSuccessful() {
-        MemTracker memTracker = new MemTracker();
-        Item item = new Item("Bug");
-        memTracker.add(item);
-        boolean result = memTracker.delete(1000);
-        assertThat(memTracker.findById(item.getId()).getName()).isEqualTo("Bug");
-        assertThat(result).isFalse();
+    /**@Test public void whenDeleteItemIsNotSuccessful() {
+    MemTracker memTracker = new MemTracker();
+    Item item = new Item("Bug");
+    memTracker.add(item);
+    boolean result = memTracker.delete(1000);
+    assertThat(memTracker.findById(item.getId()).getName()).isEqualTo("Bug");
+    assertThat(result).isFalse();
     }*/
 }

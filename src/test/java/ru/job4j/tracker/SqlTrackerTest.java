@@ -1,6 +1,9 @@
 package ru.job4j.tracker;
 
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -11,8 +14,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 import static org.assertj.core.api.Assertions.assertThat;
-@Disabled
-/** Тесты отключены, вроде как, но бот все равно упадёт */
+
 public class SqlTrackerTest {
 
     private static Connection connection;
@@ -80,7 +82,7 @@ public class SqlTrackerTest {
         Item second = new Item("pupka");
         tracker.add(item);
         tracker.add(second);
-        assertThat(tracker.findAll().size()).isEqualTo(2);
+        assertThat(tracker.findAll()).hasSize(2);
     }
 
     @Test
@@ -90,7 +92,7 @@ public class SqlTrackerTest {
         Item item2 = new Item("pipka");
         tracker.add(item);
         tracker.add(item2);
-        assertThat(tracker.findByName("pipka").size()).isEqualTo(2);
+        assertThat(tracker.findByName("pipka")).hasSize(2);
     }
 
     @Test
@@ -99,5 +101,16 @@ public class SqlTrackerTest {
         Item item = new Item("pipka");
         tracker.add(item);
         assertThat(tracker.findById(item.getId())).isEqualTo(item);
+    }
+
+    @Test
+    public void whenDeleteItemAndTheTableNotEmpty() {
+        SqlTracker tracker = new SqlTracker(connection);
+        Item item = new Item("item");
+        Item second = new Item("second");
+        tracker.add(item);
+        tracker.add(second);
+        tracker.delete(item.getId());
+        assertThat(tracker.findById(second.getId())).isEqualTo(second);
     }
 }
