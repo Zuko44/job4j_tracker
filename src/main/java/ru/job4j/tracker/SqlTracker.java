@@ -49,7 +49,7 @@ public class SqlTracker implements Store {
                 resultSet.getString("name"),
                 resultSet.getTimestamp("created").toLocalDateTime().withNano(0)
         );
-        /** Изменено время, убраны миллисекунды */
+        /** Изменено время, убраны миллисекунды  */
     }
 
     @Override
