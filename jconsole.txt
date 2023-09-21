@@ -1,0 +1,27 @@
+Under start:
+Heap Memory Usage: 400 mb
+Threads: 63
+Classes: 66.829
+CPU Usage: 3,3
+===============================
+Start StartUI:
+Heap Memory Usage: surge to 700, then 393
+Threads: from 63 to 76 then 65
+===============================
+ADDED 999999 items:
+Heap Memory Usage: first top - from 400 to 750, then drop; second top - rise to 780 from 400
+Threads: the two tops from 40 to 73
+CPU Usage: max 50%, avg - 30%.
+the app not answer, stop
+===============================
+ADDED 555555 items:
+Heap Memory Usage: sharp surge to 750, 4 minutes; than sharp drop to 400; third top also as second
+Threads: the two tops from 40 to 73
+CPU Usage: max 28%, avg - 20%.
+after 5 minutes, all item added
+===============================
+DELETE ALL ITEMS:
+Heap Memory Usage: first sharp surge to 780, drop to 400; second to 711 than again 400
+Threads: 3 growing tops, 40 -75, the first ones are approximately equal, the last one is 20% higher than the others
+CPU Usage: 4 powerful surges; first seconds 31%, than 3 tops about 27%
+after 6 minutes, all item deleted
