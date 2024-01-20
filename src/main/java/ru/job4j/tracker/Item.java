@@ -1,18 +1,29 @@
 package ru.job4j.tracker;
 
+import lombok.Data;
+
+import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Objects;
 
+@Entity
+@Table(name = "items")
+@Data
 public class Item {
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
     /**
      * private final LocalDateTime created = LocalDateTime.now();
      */
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private LocalDateTime created = LocalDateTime.now().withNano(0);
-    /** Изменено время, убраны миллисекунды  */
+
+    /**
+     * Изменено время, убраны миллисекунды
+     */
 
     public Item() {
 
@@ -73,7 +84,9 @@ public class Item {
      * }
      */
 
-    /** Переопределены методы, теперь все поля используются  */
+    /**
+     * Переопределены методы, теперь все поля используются
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) {
