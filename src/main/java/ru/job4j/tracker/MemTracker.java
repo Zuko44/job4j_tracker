@@ -24,7 +24,7 @@ public class MemTracker implements Store {
         return item;
     }
 
-    public Item findById(int id) {
+    public Item findById(Integer id) {
         return indexOf(id);
     }
 
@@ -42,7 +42,7 @@ public class MemTracker implements Store {
         return arr;
     }
 
-    public boolean replace(int id, Item item) {
+    public boolean replace(Integer id, Item item) {
         Item index = indexOf(id);
         boolean rsl = index != null;
         if (rsl) {
@@ -62,7 +62,7 @@ public class MemTracker implements Store {
         return rsl;
     }*/
 
-    public void delete(int id) {
+    public void delete(Integer id) {
         Item index = indexOf(id);
         boolean rsl = index != null;
         if (rsl) {
