@@ -9,7 +9,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.persistence.Query;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +17,7 @@ public class HbmTracker implements Store, AutoCloseable {
             .configure().build();
     private final SessionFactory sf = new MetadataSources(registry)
             .buildMetadata().buildSessionFactory();
+    private final Logger logger = LoggerFactory.getLogger(Item.class);
 
     @Override
     public Item add(Item item) {
@@ -28,6 +28,7 @@ public class HbmTracker implements Store, AutoCloseable {
             session.getTransaction().commit();
         } catch (Exception ex) {
             session.getTransaction().rollback();
+            logger.error("Error, item not saved", ex);
         } finally {
             session.close();
         }
@@ -41,14 +42,14 @@ public class HbmTracker implements Store, AutoCloseable {
         try {
             session.beginTransaction();
             Query query = session.createQuery(
-                    "UPDATE items SET name = :fName, created = :fCreated WHERE id = :fId");
+                    "UPDATE items SET name = :fName WHERE id = :fId");
             query.setParameter("fName", item.getName())
-                    .setParameter("fCreated", LocalDateTime.now())
                     .setParameter("fId", id);
             result = query.executeUpdate() > 0;
             session.getTransaction().commit();
-        } catch (Exception e) {
+        } catch (Exception ex) {
             session.getTransaction().rollback();
+            logger.error("Error, item not replaced", ex);
         } finally {
             session.close();
         }
@@ -65,8 +66,9 @@ public class HbmTracker implements Store, AutoCloseable {
                     .setParameter("fId", id)
                     .executeUpdate();
             session.getTransaction().commit();
-        } catch (Exception e) {
+        } catch (Exception ex) {
             session.getTransaction().rollback();
+            logger.error("Error, item not deleted", ex);
         } finally {
             session.close();
         }
@@ -75,7 +77,6 @@ public class HbmTracker implements Store, AutoCloseable {
     @Override
     public List<Item> findAll() {
         Session session = sf.openSession();
-        Logger logger = LoggerFactory.getLogger(Item.class);
         List<Item> items = new ArrayList<>();
         try {
             session.beginTransaction();
@@ -102,6 +103,7 @@ public class HbmTracker implements Store, AutoCloseable {
             session.getTransaction().commit();
         } catch (Exception ex) {
             session.getTransaction().rollback();
+            logger.error("Error, items not found", ex);
         } finally {
             session.close();
         }
@@ -121,6 +123,7 @@ public class HbmTracker implements Store, AutoCloseable {
             session.getTransaction().commit();
         } catch (Exception ex) {
             session.getTransaction().rollback();
+            logger.error("Error, item not found", ex);
         } finally {
             session.close();
         }
